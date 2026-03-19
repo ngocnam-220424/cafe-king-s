@@ -1,0 +1,123 @@
+// ===============================================================
+// Assumed Data Model
+// ===============================================================
+//
+// Collection: tables
+// Document ID: {tableId}
+// Fields:
+//   - id: integer (required) - Table number
+//   - status: string (required, enum: ["Empty", "Serving", "Unpaid", "Paid"])
+//   - currentOrder: array (required) - List of items in current order
+//
+// Collection: menu
+// Document ID: {itemId}
+// Fields:
+//   - id: string (required)
+//   - name: string (required)
+//   - basePrice: integer (required)
+//   - category: string (required)
+//   - image: string (optional)
+//   - imageId: string (optional)
+//   - description: string (optional)
+//
+// Collection: history
+// Document ID: {recordId}
+// Fields:
+//   - id: string (required)
+//   - tableId: integer (required)
+//   - items: array (required)
+//   - total: integer (required)
+//   - timestamp: integer (required) - Milliseconds
+//
+// Collection: users
+// Document ID: {uid}
+// Fields:
+//   - email: string (required)
+//   - role: string (required, enum: ["admin", "staff"])
+//
+// ===============================================================
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ===============================================================
+    // Helper Functions
+    // ===============================================================
+    
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isAdmin() {
+      return isAuthenticated() &&
+        (get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin' ||
+          (request.auth.token.email == "ngocnamglai@gmail.com" && request.auth.token.email_verified == true));
+    }
+
+    function isStaff() {
+      return isAuthenticated() && 
+        (get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'staff' || isAdmin());
+    }
+
+    function isValidTable(data) {
+      return data.keys().hasAll(['id', 'status', 'currentOrder']) &&
+             data.id is int &&
+             data.status in ['Empty', 'Serving', 'Unpaid', 'Paid'] &&
+             data.currentOrder is list;
+    }
+
+    function isValidMenuItem(data) {
+      return data.keys().hasAll(['id', 'name', 'basePrice', 'category']) &&
+             data.id is string &&
+             data.name is string && data.name.size() > 0 && data.name.size() < 100 &&
+             data.basePrice is int && data.basePrice >= 0 &&
+             data.category is string;
+    }
+
+    function isValidHistory(data) {
+      return data.keys().hasAll(['id', 'tableId', 'items', 'total', 'timestamp']) &&
+             data.id is string &&
+             data.tableId is int &&
+             data.items is list &&
+             data.total is int &&
+             data.timestamp is int;
+    }
+
+    function isValidUser(data) {
+      return data.keys().hasAll(['email', 'role']) &&
+             data.email is string &&
+             data.role in ['admin', 'staff'];
+    }
+
+    // ===============================================================
+    // Rules
+    // ===============================================================
+
+    match /users/{uid} {
+      allow read: if isAuthenticated() && (request.auth.uid == uid || isAdmin());
+      allow create: if isAuthenticated() && isValidUser(request.resource.data) && (isAdmin() || (request.auth.uid == uid && request.resource.data.role == 'staff'));
+      allow update: if isAuthenticated() && isValidUser(request.resource.data) && isAdmin();
+    }
+
+    match /tables/{tableId} {
+      // Customers can read tables and update orders
+      allow read: if true; 
+      allow create: if isAdmin();
+      allow update: if (isValidTable(request.resource.data) && 
+                       (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['currentOrder', 'status'])));
+      allow delete: if isAdmin();
+    }
+
+    match /menu/{itemId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /history/{recordId} {
+      allow read: if isStaff();
+      allow create: if isStaff() && isValidHistory(request.resource.data);
+      allow update, delete: if isAdmin();
+    }
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "tables": [
+    {
+      "id": 1,
+      "status": "Serving",
+      "currentOrder": [
+        {
+          "itemId": "coffee-0",
+          "name": "Cà phê phin sữa",
+          "size": "M",
+          "quantity": 1,
+          "price": 30000
+        },
+        {
+          "itemId": "coffee-2",
+          "name": "Cà phê ép sữa",
+          "size": "M",
+          "quantity": 1,
+          "price": 30000
+        },
+        {
+          "itemId": "coffee-5",
+          "name": "Cà phê đen đá",
+          "size": "M",
+          "quantity": 1,
+          "price": 30000
+        },
+        {
+          "itemId": "coffee-4",
+          "name": "Cà phê sữa đá",
+          "size": "M",
+          "quantity": 1,
+          "price": 30000
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "status": "Empty",
+      "currentOrder": []
+    },
+    {
+      "id": 3,
+      "status": "Empty",
+      "currentOrder": []
+    },
+    {
+      "id": 4,
+      "status": "Empty",
+      "currentOrder": []
+    },
+    {
+      "id": 5,
+      "status": "Empty",
+      "currentOrder": []
+    },
+    {
+      "id": 6,
+      "status": "Empty",
+      "currentOrder": []
+    },
+    {
+      "id": 7,
+      "status": "Empty",
+      "currentOrder": []
+    },
+    {
+      "id": 8,
+      "status": "Empty",
+      "currentOrder": []
+    },
+    {
+      "id": 9,
+      "status": "Empty",
+      "currentOrder": []
+    },
+    {
+      "id": 10,
+      "status": "Empty",
+      "currentOrder": []
+    },
+    {
+      "id": 11,
+      "status": "Empty",
+      "currentOrder": []
+    },
+    {
+      "id": 12,
+      "status": "Empty",
+      "currentOrder": []
+    },
+    {
+      "id": 13,
+      "status": "Empty",
+      "currentOrder": []
+    },
+    {
+      "id": 14,
+      "status": "Empty",
+      "currentOrder": []
+    },
+    {
+      "id": 15,
+      "status": "Empty",
+      "currentOrder": []
+    },
+    {
+      "id": 16,
+      "status": "Empty",
+      "currentOrder": []
+    },
+    {
+      "id": 17,
+      "status": "Empty",
+      "currentOrder": []
+    },
+    {
+      "id": 18,
+      "status": "Empty",
+      "currentOrder": []
+    },
+    {
+      "id": 19,
+      "status": "Empty",
+      "currentOrder": []
+    },
+    {
+      "id": 20,
+      "status": "Empty",
+      "currentOrder": []
+    },
+    {
+      "id": 21,
+      "status": "Empty",
+      "currentOrder": []
+    },
+    {
+      "id": 22,
+      "status": "Empty",
+      "currentOrder": []
+    },
+    {
+      "id": 23,
+      "status": "Empty",
+      "currentOrder": []
+    },
+    {
+      "id": 24,
+      "status": "Empty",
+      "currentOrder": []
+    },
+    {
+      "id": 25,
+      "status": "Empty",
+      "currentOrder": []
+    }
+  ],
+  "history": [],
+  "menu": null
+}
