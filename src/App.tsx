@@ -3,7 +3,11 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+<<<<<<< HEAD
 import React, { useState, useEffect, useMemo, Component, ReactNode, ErrorInfo } from 'react';
+=======
+import React, { useState, useEffect, useMemo } from 'react';
+>>>>>>> 045dd41a1f65ebaaeeaaed3435600b34bacdb0ec
 import { 
   Coffee, 
   Users, 
@@ -133,6 +137,7 @@ const MENU_CATEGORIES = [
   'Hạt dưa – hạt hướng dương'
 ];
 
+<<<<<<< HEAD
 interface ErrorBoundaryProps {
   children: React.ReactNode;
 }
@@ -199,6 +204,9 @@ export default function App() {
 }
 
 function AppContent() {
+=======
+export default function App() {
+>>>>>>> 045dd41a1f65ebaaeeaaed3435600b34bacdb0ec
   const [tables, setTables] = useState<Table[]>(INITIAL_TABLES);
   const [history, setHistory] = useState<PaymentRecord[]>([]);
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
@@ -1163,6 +1171,7 @@ function AppContent() {
                 <div className="w-10 h-10 rounded-full bg-slate-200 border-2 border-white shadow-sm overflow-hidden">
                   <img src={user.photoURL || `https://api.dicebear.com/7.x/avataaars/svg?seed=${user.uid}`} alt="avatar" />
                 </div>
+<<<<<<< HEAD
                 {isAdminUser() && (
                   <button 
                     onClick={async () => {
@@ -1190,6 +1199,8 @@ function AppContent() {
                     <PlusCircle size={20} />
                   </button>
                 )}
+=======
+>>>>>>> 045dd41a1f65ebaaeeaaed3435600b34bacdb0ec
               </div>
             ) : (
               <button 

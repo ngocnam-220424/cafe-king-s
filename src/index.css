@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+<<<<<<< HEAD
 @utility custom-scrollbar {
   &::-webkit-scrollbar {
     width: 6px;
@@ -21,3 +22,20 @@
     @apply bg-slate-50 text-slate-900;
   }
 }
+=======
+@layer utilities {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+}
+>>>>>>> 045dd41a1f65ebaaeeaaed3435600b34bacdb0ec

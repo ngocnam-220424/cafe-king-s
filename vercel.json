@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "version": 2,
   "framework": "vite",
   "rewrites": [
@@ -7,6 +8,10 @@
       "destination": "/api/index.ts"
     },
     {
+=======
+  "rewrites": [
+    {
+>>>>>>> 045dd41a1f65ebaaeeaaed3435600b34bacdb0ec
       "source": "/(.*)",
       "destination": "/index.html"
     }

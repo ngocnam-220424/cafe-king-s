@@ -1,8 +1,12 @@
+<<<<<<< HEAD
 /// <reference types="vite/client" />
+=======
+>>>>>>> 045dd41a1f65ebaaeeaaed3435600b34bacdb0ec
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
+<<<<<<< HEAD
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -15,5 +19,11 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app, import.meta.env.VITE_FIREBASE_FIRESTORE_DATABASE_ID);
+=======
+import firebaseConfig from '../firebase-applet-config.json';
+
+const app = initializeApp(firebaseConfig);
+export const db = getFirestore(app, firebaseConfig.firestoreDatabaseId);
+>>>>>>> 045dd41a1f65ebaaeeaaed3435600b34bacdb0ec
 export const auth = getAuth(app);
 export const storage = getStorage(app);
