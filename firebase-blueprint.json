@@ -1,0 +1,70 @@
+{
+  "entities": {
+    "Table": {
+      "title": "Table",
+      "description": "A table in the coffee shop",
+      "type": "object",
+      "properties": {
+        "id": { "type": "integer", "description": "Table number" },
+        "status": { "type": "string", "enum": ["Empty", "Serving", "Unpaid", "Paid"], "description": "Current status of the table" },
+        "currentOrder": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "itemId": { "type": "string" },
+              "name": { "type": "string" },
+              "size": { "type": "string" },
+              "quantity": { "type": "integer" },
+              "price": { "type": "integer" },
+              "note": { "type": "string" }
+            }
+          }
+        }
+      },
+      "required": ["id", "status", "currentOrder"]
+    },
+    "MenuItem": {
+      "title": "MenuItem",
+      "description": "An item in the menu",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "basePrice": { "type": "integer" },
+        "category": { "type": "string" },
+        "image": { "type": "string" },
+        "imageId": { "type": "string" },
+        "description": { "type": "string" }
+      },
+      "required": ["id", "name", "basePrice", "category"]
+    },
+    "PaymentRecord": {
+      "title": "PaymentRecord",
+      "description": "A completed order record",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "tableId": { "type": "integer" },
+        "items": { "type": "array" },
+        "total": { "type": "integer" },
+        "timestamp": { "type": "integer", "description": "Timestamp in milliseconds" }
+      },
+      "required": ["id", "tableId", "items", "total", "timestamp"]
+    }
+  },
+  "firestore": {
+    "/tables/{tableId}": {
+      "schema": "Table",
+      "description": "Collection of tables"
+    },
+    "/menu/{itemId}": {
+      "schema": "MenuItem",
+      "description": "Collection of menu items"
+    },
+    "/history/{recordId}": {
+      "schema": "PaymentRecord",
+      "description": "Collection of order history"
+    }
+  }
+}
